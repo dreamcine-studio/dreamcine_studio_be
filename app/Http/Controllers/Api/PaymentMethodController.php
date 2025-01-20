@@ -65,7 +65,7 @@ class PaymentMethodController extends Controller
 
         if(!$payment_method) {
             return response()->json([
-                "succcess" => false,
+                "success" => false,
                 "message" => "Resource not found"
             ], 404);
         }
@@ -125,14 +125,16 @@ class PaymentMethodController extends Controller
     }
 
     public function destroy(string $id){
-        $payment_method =Payment_Method::find($id);
+        $payment_method = Payment_Method::find($id);
 
         if(!$payment_method) {
             return response()->json([
-                "succcess" => false,
+                "success" => false,
                 "message" => "Resource not found!",
             ], 404);
         };
+
+        $payment_method->delete();
 
         return response()->json([
             "succcess" => true,
