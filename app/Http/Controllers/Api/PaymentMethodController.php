@@ -3,14 +3,15 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Payment_Method;
+use App\Models\PaymentMethod;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class PaymentMethodController extends Controller
 {
     public function index(){
-        $payment_methods = Payment_Method::all(); //elequent
+        $payment_methods = PaymentMethod::all(); //elequent
+
 
         // mengecek data genre
         if ($payment_methods->isEmpty()) {
@@ -47,7 +48,7 @@ class PaymentMethodController extends Controller
 
 
         //4. insert data
-        $payment_method = Payment_Method::create([
+        $payment_method = PaymentMethod::create([
             "name"=>$request->name,
             "account_number"=>$request->account_number,
         ]);
@@ -61,7 +62,7 @@ class PaymentMethodController extends Controller
     }
 
     public function show(string $id){
-        $payment_method = Payment_Method::find($id);
+        $payment_method = PaymentMethod::find($id);
 
         if(!$payment_method) {
             return response()->json([
@@ -79,7 +80,7 @@ class PaymentMethodController extends Controller
 
     public function update(Request $request, string $id){
         //cari data genre
-        $payment_method = Payment_Method::find($id);
+        $payment_method = PaymentMethod::find($id);
 
         if(!$payment_method) {
             return response()->json([
@@ -125,7 +126,7 @@ class PaymentMethodController extends Controller
     }
 
     public function destroy(string $id){
-        $payment_method = Payment_Method::find($id);
+        $payment_method =PaymentMethod::find($id);
 
         if(!$payment_method) {
             return response()->json([
