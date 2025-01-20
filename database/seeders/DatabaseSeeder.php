@@ -15,6 +15,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             GenreSeeder::class,
             PaymentMethodSeeder::class,
+            StudioSeeder::class
+
         ]);
 
 

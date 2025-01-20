@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('location');
-            $table->integer('max_seats');
+            $table->integer('maxseats');
             $table->timestamps();
         });
     }
