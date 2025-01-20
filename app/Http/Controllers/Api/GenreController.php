@@ -35,7 +35,7 @@ class GenreController extends Controller
         // membuat validasi
         $validator = Validator::make($request->all(), [
             "name" => "required|string",
-            "description" => "nullable|text"
+            "description" => "nullable|string"
         ]);
 
         // melakukan cek data yang bermasalah
