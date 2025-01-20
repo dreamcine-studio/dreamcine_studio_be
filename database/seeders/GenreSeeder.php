@@ -26,4 +26,4 @@ class GenreSeeder extends Seeder
             'description' => 'Movies designed to scare and thrill audiences with suspenseful and frightening elements.',
         ]);
     }
-}
+}                                                   
