@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\GenreController;
+use App\Http\Controllers\Api\PaymentMethodController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -9,3 +10,4 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::apiResource('/genres', GenreController::class);
+Route::get('/payment_methods',[PaymentMethodController::class]);
