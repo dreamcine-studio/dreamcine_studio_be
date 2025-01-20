@@ -15,15 +15,15 @@ class GenreSeeder extends Seeder
     {
         Genre::create([
             'name' => 'Action',
-            'description' => 'Movies that feature intense physical activity, including fights, chases, and explosions.'
+            'description' => 'Movies that feature intense physical activity, including fights, chases, and explosions.',
         ]);
         Genre::create([
             'name' => 'Romance',
-            'description' => 'Movies that explore love stories and emotional relationships between characters.'
+            'description' => 'Movies that explore love stories and emotional relationships between characters.',
         ]);
         Genre::create([
             'name' => 'Horror',
-            'description' => 'Movies designed to scare and thrill audiences with suspenseful and frightening elements.'
+            'description' => 'Movies designed to scare and thrill audiences with suspenseful and frightening elements.',
         ]);
     }
 }
