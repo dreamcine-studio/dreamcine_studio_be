@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\GenreController;
+use App\Http\Controllers\Api\MovieController;
 use App\Http\Controllers\Api\PaymentMethodController;
 use App\Http\Controllers\Api\StudioController;
 use Illuminate\Http\Request;
@@ -12,4 +13,5 @@ Route::get('/user', function (Request $request) {
 
 Route::apiResource('/genres', GenreController::class);
 Route::apiResource('/payment_methods',PaymentMethodController::class);
-Route::apiResource('/studios',StudioController::class);
+Route::apiResource('/studios', StudioController::class);
+Route::apiResource('/movies', MovieController::class);
