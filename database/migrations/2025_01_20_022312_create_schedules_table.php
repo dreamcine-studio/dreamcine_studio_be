@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('schedules', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->unsignedBigInteger('movie_id');
+            $table->unsignedBigInteger('studio_id');
+            $table->dateTime('showtime'); 
+            $table->timestamps(); 
+            
         });
     }
 
