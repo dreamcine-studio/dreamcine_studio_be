@@ -7,18 +7,13 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
         $this->call([
             GenreSeeder::class,
             PaymentMethodSeeder::class,
             StudioSeeder::class,
-            SeatSeeder::class
+            MovieSeeder::class
         ]);
-
-
     }
 }

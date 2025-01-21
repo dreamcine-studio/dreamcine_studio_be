@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\GenreController;
+use App\Http\Controllers\Api\MovieController;
 use App\Http\Controllers\Api\PaymentMethodController;
 use App\Http\Controllers\Api\SeatController;
 use App\Http\Controllers\Api\StudioController;
@@ -15,3 +16,4 @@ Route::apiResource('/genres', GenreController::class);
 Route::apiResource('/payment_methods',PaymentMethodController::class);
 Route::apiResource('/studios',StudioController::class);
 Route::apiResource('/seats',SeatController::class);
+Route::apiResource('/movies', MovieController::class);
