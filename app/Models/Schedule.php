@@ -6,5 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Schedule extends Model
 {
-    //
+    protected $fillable =[
+    'movie_id','studio_id','showtime'
+    ];
+
 }
+
