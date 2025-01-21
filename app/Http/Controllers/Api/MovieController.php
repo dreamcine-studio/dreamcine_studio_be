@@ -22,11 +22,6 @@ class MovieController extends Controller
             ], 200);
         }
 
-        // decode cast
-        foreach ($movies as $movie) {
-            $movie->cast = json_decode($movie->cast);
-        }
-
         // memberi pesan berhasil
         return response()->json([
             "success" => true,
@@ -43,7 +38,7 @@ class MovieController extends Controller
             "description" => "nullable|string|max:255",
             'poster' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'price' => 'required|integer',
-            'cast' => 'required|string',
+            'cast' => 'required|string|max:255',
             'duration' => 'required|integer',
             'release_date' => 'required|date|date_format:Y-m-d|before:today',
             'genre_id' => 'required|integer'
@@ -88,9 +83,6 @@ class MovieController extends Controller
         // mengambil data movie
         $movie = Movie::find($id);
 
-        // decode cast
-        $movie->cast = json_decode($movie->cast, true);
-
         // mengecek data movie
         if (!$movie) {
             return response()->json([
@@ -123,14 +115,14 @@ class MovieController extends Controller
 
         // membuat validasi
         $validator = Validator::make($request->all(), [
-            "title" => "required|string",
+            "title" => "nullable|string",
             "description" => "nullable|string|max:255",
-            'poster' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'price' => 'required|integer',
-            'cast' => 'required|string',
-            'duration' => 'required|string',
-            'release_date' => 'required|date',
-            'genre_id' => 'required|integer'
+            'poster' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'price' => 'nullable|integer',
+            'cast' => 'nullable|string|max:255',
+            'duration' => 'nullable|string',
+            'release_date' => 'nullable|date',
+            'genre_id' => 'nullable|integer'
         ]);
 
         // melakukan cek data yang bermasalah
@@ -146,22 +138,22 @@ class MovieController extends Controller
             $image = $request->file('poster');
             $image->store('movies', 'public');
             $posterName = $image->hashName();
-        } else {
-            $posterName = $movie->poster;
+            $movie->poster = $posterName;
         }
 
+        // update the rest of data
+        $movie->fill($request->only([
+            'title',
+            'description',
+            'price',
+            'cast',
+            'duration',
+            'release_date',
+            'genre_id'
+        ]));
 
         // update data movie
-        $movie->update([
-            "title" => $request->title,
-            "description" => $request->description,
-            "poster" => $posterName,
-            "price" => $request->price,
-            "cast" => $request->cast,
-            "duration" => $request->duration,
-            "release_date" => $request->release_date,
-            "genre_id" => $request->genre_id
-        ]);
+        $movie->save();
 
         // memberi pesan berhasil
         return response()->json([

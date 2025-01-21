@@ -13,7 +13,7 @@ class Movie extends Model
         'price',
         'cast',
         'duration',
-        'relesase_date',
+        'release_date',
         'genre_id',
     ];
 }

@@ -13,7 +13,11 @@ class DatabaseSeeder extends Seeder
             GenreSeeder::class,
             PaymentMethodSeeder::class,
             StudioSeeder::class,
-            MovieSeeder::class
+            MovieSeeder::class,
+            ScheduleSeeder::class,
+            BookingSeeder::class,
+            SeatSeeder::class,
+            PaymentSeeder::class
         ]);
     }
 }
