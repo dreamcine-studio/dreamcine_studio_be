@@ -32,7 +32,7 @@ class PaymentMethodController extends Controller
         //1. validasi
         $validator = Validator::make($request->all(), [
             "name" => "required|string|max:255",
-            "account_number" => "required|string|max:255",
+            "account_number" => "required|integer|max:255",
         ]);
 
         // 2. cek validator
@@ -91,7 +91,7 @@ class PaymentMethodController extends Controller
 
         $validator = Validator::make($request->all(), [
             "name" => "required|string|max:255",
-            "account_number" => "required|string|max:255",
+            "account_number" => "required|integer|max:255",
         ]);
 
         if($validator->fails()) {
