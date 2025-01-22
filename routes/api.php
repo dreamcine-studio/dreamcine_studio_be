@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\GenreController;
 use App\Http\Controllers\Api\MovieController;
+use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\PaymentMethodController;
 use App\Http\Controllers\Api\SeatController;
 use App\Http\Controllers\Api\StudioController;
