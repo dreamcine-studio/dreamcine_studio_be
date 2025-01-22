@@ -14,7 +14,7 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::apiResource('/genres', GenreController::class);
-Route::apiResource('/payment_methods',PaymentMethodController::class);
+Route::apiResource('/payment_methods', PaymentMethodController::class);
 Route::apiResource('/studios',StudioController::class);
 Route::apiResource('/seats',SeatController::class);
 Route::apiResource('/movies', MovieController::class);
