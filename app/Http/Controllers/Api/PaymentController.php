@@ -8,6 +8,7 @@ use App\Http\Resources\PaymentResource;
 use App\Models\Booking;
 use App\Models\Movie;
 use App\Models\Order;
+
 use App\Models\Payment;
 use App\Models\Payment_method;
 use App\Models\Schedule;
@@ -36,6 +37,7 @@ class PaymentController extends Controller
             "data" => $payment_methods
         ], 200);
     }
+
     //==================================================================================================
     // store
     public function store(Request $request) {
@@ -185,7 +187,5 @@ class PaymentController extends Controller
             "messege" => "Resource deleted succesgully!",
         ],200);
     }
-
-
 
 }
