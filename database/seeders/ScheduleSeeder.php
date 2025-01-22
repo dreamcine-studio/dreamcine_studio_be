@@ -22,13 +22,13 @@ class ScheduleSeeder extends Seeder
       Schedule::create([
         'movie_id' => 2,
         'studio_id' => 2,
-        'showtime'=> '2024-12-09'
+        'showtime'=> '2024-12-10'
       ]);
 
       Schedule::create([
         'movie_id' => 3,
         'studio_id' => 3,
-        'showtime'=> '2024-12-09'
+        'showtime'=> '2024-12-11'
       ]);
     }
 }
