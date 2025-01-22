@@ -42,10 +42,6 @@ class PaymentController extends Controller
             'order_id' => 'required|exists:orders,id',
             'payment_method_id' => 'required|exists:payment_methods,id',
 
-            // 'amount'=> 'required|numeric|min:0',
-            // 'status'=> 'required|string',
-            // 'staff_confirmed_by' => 'required|integer',
-            // 'staff_confirmed_at'=> 'required|timestamp',
         ]);
 
         // 2. melakukan cek data yang bermasalah
@@ -56,16 +52,6 @@ class PaymentController extends Controller
             ], 422);
         }
 
-        //  // Ambil data user yang sedang login
-        //  $user = auth('api')->user()->name;
-
-        //  // cek login user
-        //  if (!$user) {
-        //     return response()->json([
-        //         'status' => true,
-        //         'message' => 'Unauthorize!'
-        //     ], 401);
-        // }
 
         // ambil data order
         $order = Booking::find($request->order_id);
@@ -80,8 +66,7 @@ class PaymentController extends Controller
             'payment_method_id' => $request->payment_method_id,
             'amount'=> $amount,
             'status'=> 'pending',
-            // 'staff_confirmed_by' => $request->staff_confirmed_by,
-            // 'staff_confirmed_at'=> $request->nstaff_confirmed_at,
+
         ]);
 
         // // 4. memberi pesan berhasil
@@ -127,8 +112,7 @@ class PaymentController extends Controller
 
         // 2. membuat validasi
         $validator = Validator::make($request->all(), [
-            // 'order_id' => 'required|exists:orders,id',
-            // 'payment_method_id' => 'required|exists:payment_methods,id',
+
             'status'=> 'required|string'
         ]);
 
@@ -156,8 +140,7 @@ class PaymentController extends Controller
         // $order = Order::find($request->order_id);
 
         $payment->update([
-            // 'order_id' => $request->order_id,
-            // 'payment_method_id' => $request->payment_method_id,
+
             'status'=> $request->status,
             "staff_confirmed_by"=> auth('api')->user()->name,
             "staff_confirmed_at" => now()
