@@ -35,7 +35,7 @@ class BookingController extends Controller
     {
         // membuat validasi
         $validator = Validator::make($request->all(), [
-            "user_id" => "required|integer",
+            "booking_id" => "required|integer",
             "schedule_id" => "required|integer",
             "quantity" => "required|integer",
             "booking_date" => "required|date",

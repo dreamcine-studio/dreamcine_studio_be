@@ -24,21 +24,21 @@ class PaymentSeeder extends Seeder
         ]);
 
         Payment::create([
-            "payment_code" => "0AB12",
-            "booking_id" => 2,
-            "payment_method_id" => 2,
-            "amount" => 14,
-            "payment_date" => "2024-01-19",
-            "status" => "pending"
+                "payment_code" => "0AB12",
+                "booking_id" => 2,
+                "payment_method_id" => 2,
+                "amount" => 14,
+                "payment_date" => "2024-01-19",
+                "status" => "pending"
     ]);
 
          Payment::create([
-            "payment_code" => "01234",
-            "booking_id" => 3,
-            "payment_method_id" => 3,
-            "amount" => 15,
-            "payment_date" => "2024-01-19",
-            "status" => "pending"
+                "payment_code" => "01234",
+                "booking_id" => 3,
+                "payment_method_id" => 3,
+                "amount" => 15,
+                "payment_date" => "2024-01-19",
+                "status" => "pending"
 ]);
     }
 }

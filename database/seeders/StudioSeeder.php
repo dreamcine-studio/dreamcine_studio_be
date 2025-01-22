@@ -15,21 +15,21 @@ class StudioSeeder extends Seeder
     {
         Studio::create([
             'name' => 'studio 1',
-            'location' => 'lantai 3',
-            'maxseats' => '50'
+            'location' => 'lantai 2',
+            'maxseats' => '25'
 
         ]);
         Studio::create([
             'name' => 'studio 2',
             'location' => 'lantai 3',
-            'maxseats' => '50'
+            'maxseats' => '25'
 
         ]);
         Studio::create([
             'name' => 'studio 3',
             'location' => 'lantai 4',
-            'maxseats' => '50'
+            'maxseats' => '25'
 
         ]);
-    }   
+    }
 }
