@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\GenreController;
 use App\Http\Controllers\Api\MovieController;
+use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\PaymentMethodController;
 use App\Http\Controllers\Api\SeatController;
 use App\Http\Controllers\Api\StudioController;
@@ -20,4 +21,6 @@ Route::apiResource('/studios',StudioController::class);
 Route::apiResource('/seats',SeatController::class);
 Route::apiResource('/movies', MovieController::class);
 Route::apiResource('/schedules', ScheduleController::class);
+Route::apiResource('/payments', PaymentController::class);
+
 Route::apiResource('/booking', BookingController::class);
