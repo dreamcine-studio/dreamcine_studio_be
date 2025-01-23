@@ -20,3 +20,4 @@ Route::apiResource('/studios',StudioController::class);
 Route::apiResource('/seats',SeatController::class);
 Route::apiResource('/movies', MovieController::class);
 Route::apiResource('/schedules', ScheduleController::class);
+Route::apiResource('/payments', PaymentController::class);
