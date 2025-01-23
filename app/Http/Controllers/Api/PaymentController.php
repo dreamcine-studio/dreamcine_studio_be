@@ -70,7 +70,7 @@ class PaymentController extends Controller
      $amount = $booking->quantity * $movie->price;
 
 
-    // Buat-nomor order unik
+    // Buat paymnet_code unik
      $payment_Code = "Code -". strtoupper(uniqid());
 
 
