@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\PaymentMethodController;
 use App\Http\Controllers\Api\SeatController;
 use App\Http\Controllers\Api\StudioController;
 use App\Http\Controllers\Api\ScheduleController;
+use App\Http\Controllers\Api\BookingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +22,5 @@ Route::apiResource('/seats',SeatController::class);
 Route::apiResource('/movies', MovieController::class);
 Route::apiResource('/schedules', ScheduleController::class);
 Route::apiResource('/payments', PaymentController::class);
+
+Route::apiResource('/booking', BookingController::class);
