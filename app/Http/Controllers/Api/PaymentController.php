@@ -62,10 +62,11 @@ class PaymentController extends Controller
 
      // ambil data booking
      $booking = Booking::find($request->booking_id);
-     $schedule = Schedule::find($request->movie_id);
-     $movie = Movie::find($request->price);
+     $schedule = Schedule::find($booking->schedule_id);
+     $movie = Movie::find($schedule->movie_id);
 
-     // ambil data amount
+    // dd($movie);
+    //  // ambil data amount
      $amount = $booking->quantity * $movie->price;
 
         // 3. membuat data payment
