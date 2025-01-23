@@ -48,7 +48,7 @@ class PaymentController extends Controller
             'booking_id' => 'nullable|exists:bookings,id',
             'payment_method_id' => 'nullable|exists:payment_methods,id',
             'amount' => 'nullable|numeric|min:0',
-            'payment_date' => 'nullable|date',
+            // 'payment_date' => 'nullable|date',
             'status' => 'nullable|in:pending,confirmed,failed',
         ]);
 
@@ -62,19 +62,26 @@ class PaymentController extends Controller
 
      // ambil data booking
      $booking = Booking::find($request->booking_id);
-     $schedule = Schedule::find($request->movie_id);
-     $movie = Movie::find($request->price);
+     $schedule = Schedule::find($booking->schedule_id);
+     $movie = Movie::find($schedule->movie_id);
 
-     // ambil data amount
+    // dd($movie);
+    //  // ambil data amount
      $amount = $booking->quantity * $movie->price;
 
-        // 3. membuat data payment
+
+    // Buat-nomor order unik
+     $payment_Code = "Code -". strtoupper(uniqid());
+
+
+     // 3. membuat data payment
         $payment = Payment::create([
             'booking_id' => $request->booking_id,
             'payment_method_id' => $request->payment_method_id,
             'amount'=> $amount,
             'status'=> 'pending',
-            "payment_date" => $request->payment_date
+            "payment_code" => $payment_Code,
+            "payment_date" => $request->payment_date ?? now()
 
 
         ]);
