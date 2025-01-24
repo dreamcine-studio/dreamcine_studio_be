@@ -38,7 +38,10 @@ Route::middleware(['auth:api'])->group(function () {
                 Route::apiResource('/movies', MovieController::class)->only(['store', 'update', 'destroy']);
                 Route::apiResource('/payments', PaymentController::class);
                 Route::apiResource('/payment_methods',PaymentMethodController::class);
-                Route::apiResource('/genre',GenreController::class);
+                Route::apiResource('/genres',GenreController::class);
+                Route::apiResource('/studios',StudioController::class);
+                Route::apiResource('/schedules', ScheduleController::class);
+                Route::apiResource('/bookings', BookingController::class);
 
             });
 
