@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Route;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 
-<<<<<<< HEAD
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:api');
@@ -43,13 +42,3 @@ Route::middleware(['auth:api'])->group(function () {
             });
 
 });
-=======
-Route::apiResource('/genres', GenreController::class);
-Route::apiResource('/payment_methods',PaymentMethodController::class);
-Route::apiResource('/studios',StudioController::class);
-Route::apiResource('/seats',SeatController::class);
-Route::apiResource('/movies', MovieController::class);
-Route::apiResource('/schedules', ScheduleController::class);
-Route::apiResource('/payments', PaymentController::class);
-Route::apiResource('/bookings', BookingController::class);
->>>>>>> d0fcdae3452e934f561dc485758d7a45456edb14
