@@ -15,6 +15,35 @@ use Illuminate\Support\Facades\Route;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 
+<<<<<<< HEAD
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:api');
+
+
+Route::apiResource('/movies', MovieController::class)->only(['index', 'show']);
+Route::apiResource('/genres', GenreController::class)->only(['index', 'show']);
+
+Route::middleware(['auth:api'])->group(function () {
+    Route::get('/user', fn(Request $request) => $request->user());
+
+            Route::apiResource('/genres', GenreController::class);
+            // Route::apiResource('/payment_methods',PaymentMethodController::class);
+            Route::apiResource('/studios',StudioController::class);
+            Route::apiResource('/schedules', ScheduleController::class);
+            Route::apiResource('/booking', BookingController::class);
+
+
+            Route::middleware(['role:admin'])->group(function () {
+                Route::apiResource('/seats',SeatController::class);
+                Route::apiResource('/movies', MovieController::class)->only(['store', 'update', 'destroy']);
+                Route::apiResource('/payments', PaymentController::class);
+                Route::apiResource('/payment_methods',PaymentMethodController::class);
+
+            });
+
+});
+=======
 Route::apiResource('/genres', GenreController::class);
 Route::apiResource('/payment_methods',PaymentMethodController::class);
 Route::apiResource('/studios',StudioController::class);
@@ -23,3 +52,4 @@ Route::apiResource('/movies', MovieController::class);
 Route::apiResource('/schedules', ScheduleController::class);
 Route::apiResource('/payments', PaymentController::class);
 Route::apiResource('/bookings', BookingController::class);
+>>>>>>> d0fcdae3452e934f561dc485758d7a45456edb14
