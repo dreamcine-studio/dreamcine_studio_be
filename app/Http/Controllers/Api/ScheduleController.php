@@ -19,8 +19,8 @@ class ScheduleController extends Controller
 
     public function store(Request $request) {
         $validator = Validator::make($request->all(),[
-            "movie_id" => "required|integer",
-            "studio_id" => "required|integer",
+            "movie_id" => "required|integer|exists:movies,id",
+            "studio_id" => "required|integer|exists:studios,id",
             "showtime" => "required|date"
           ]);
 
@@ -79,8 +79,8 @@ class ScheduleController extends Controller
 
             // membuat validasi
           $validator = Validator::make($request->all(), [
-            "movie_id" => "required|integer",
-            "studio_id" => "required|integer",
+            "movie_id" => "required|integer|exists:movies,id",
+            "studio_id" => "required|integer|exists:studios,id",
             "showtime" => "required|date"
           ]);
 

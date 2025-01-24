@@ -22,5 +22,4 @@ Route::apiResource('/seats',SeatController::class);
 Route::apiResource('/movies', MovieController::class);
 Route::apiResource('/schedules', ScheduleController::class);
 Route::apiResource('/payments', PaymentController::class);
-
 Route::apiResource('/booking', BookingController::class);
