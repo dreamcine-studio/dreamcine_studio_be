@@ -12,26 +12,26 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 class AuthController extends Controller
 {
     public function register(Request $request) {
-        // setup validator
+        // membuat validasi
         $validator = Validator::make($request->all(), [
             "name" => "required|string|max:255",
             "email" => "required|string|email|max:255|unique:users",
             "password" => "required|string|min:8"
         ]);
 
-        // Check validator
+        // cek validasi
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }
 
-        // Create user
+        // tambah data user
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password)
         ]);
 
-        // Return response JSON user is created
+        // memberi pesan berhasil
         if ($user) {
             return response()->json([
                 'success' => true,
@@ -51,21 +51,21 @@ class AuthController extends Controller
     //Login
 
     public function login(Request $request) {
-        // setup validator
+        // membuat validasi
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
             'password' => 'required|string'
         ]);
 
-        // Check validator
+        // cek validsai
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }
 
-        // Get credential from request
+        // mengambil data email dan password
         $credentials = $request->only('email', 'password');
 
-        // If auth failed
+        // jika data tersebut gagal
         if(!$token = auth()->guard('api')->attempt($credentials)) {
             return response()->json([
                 'success' => false,
@@ -73,6 +73,7 @@ class AuthController extends Controller
             ], 401);
         }
 
+        // membuat pesan apabila sukses
         return response()->json([
             'success' => true,
             'message' => 'Login successfully',
@@ -87,14 +88,16 @@ class AuthController extends Controller
 
     public function logout(Request $request) {
         try {
+            // agar token yang sudah ada di hapus semuah
             JWTAuth::invalidate(JWTAuth::getToken());
 
-            // if logout succes
+            // jika logout berhasil
             return response()->json([
                 'success' => true,
                 'massege' => 'Logout succesfully!'
             ], 200);
 
+        // jika logout gagal
         } catch (JWTException $e) {
             return response()->json([
                 'success' => false,

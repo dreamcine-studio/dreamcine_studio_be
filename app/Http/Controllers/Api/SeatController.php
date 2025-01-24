@@ -31,7 +31,14 @@ class SeatController extends Controller
             "success" => false,
             "message" => $validator->errors()
         ], 422);
-          };
+    };
+
+    if (Seat::isSeatBooked($request->studio_id, $request->seat_number)) {
+        return response()->json([
+            "success" => false,
+            "message" => "Seat number already booked!"
+        ], 400); // HTTP status 400: Bad Request
+    }
 
           // insert data
         $seat = Seat::create([
