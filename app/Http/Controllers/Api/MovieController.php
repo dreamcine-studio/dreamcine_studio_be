@@ -121,7 +121,7 @@ class MovieController extends Controller
             'price' => 'nullable|integer',
             'cast' => 'nullable|string|max:255',
             'duration' => 'nullable|string',
-            'release_date' => 'nullable|date',
+            'release_date' => 'nullable|date|date_format:Y-m-d|before:today',
             'genre_id' => 'nullable|integer|exists:genres,id'
         ]);
 
