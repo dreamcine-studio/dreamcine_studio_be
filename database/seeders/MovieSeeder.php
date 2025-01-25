@@ -16,7 +16,7 @@ class MovieSeeder extends Seeder
         Movie::create([
             'title' => 'Annabelle',
             'description' => 'Sebuah boneka vintage yang dirasuki oleh roh jahat membawa teror ke dalam kehidupan pasangan muda.',
-            'poster' => 'https://example.com/annabelle-poster.jpg',
+            'poster' => 'https://upload.wikimedia.org/wikipedia/id/9/9b/Annabelle-poster.jpg',
             'price' => 50000,
             'cast' => 'Annabelle Wallis, Ward Horton, Alfre Woodard',
             'duration' => '99',
@@ -26,7 +26,7 @@ class MovieSeeder extends Seeder
         Movie::create([
                 'title' => 'Inception',
                 'description' => 'Seorang pencuri yang memiliki kemampuan untuk masuk ke dalam mimpi orang lain mendapatkan tugas untuk menanamkan ide di alam bawah sadar targetnya.',
-                'poster' => 'https://example.com/inception-poster.jpg',
+                'poster' => 'https://upload.wikimedia.org/wikipedia/en/2/2e/Inception_%282010%29_theatrical_poster.jpg',
                 'price' => 75000,
                 'cast' => 'Leonardo DiCaprio, Joseph Gordon-Levitt, Ellen Page',
                 'duration' => '148',
@@ -36,7 +36,7 @@ class MovieSeeder extends Seeder
         Movie::create([
             'title' => 'The Pursuit of Happyness',
             'description' => 'Kisah inspiratif seorang ayah yang berjuang melawan kemiskinan demi masa depan anaknya.',
-            'poster' => 'https://example.com/pursuit-of-happyness-poster.jpg',
+            'poster' => 'https://upload.wikimedia.org/wikipedia/en/8/81/Poster-pursuithappyness.jpg',
             'price' => 60000,
             'cast' => 'Will Smith, Jaden Smith, Thandie Newton',
             'duration' => '117',
