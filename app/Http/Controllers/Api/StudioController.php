@@ -47,7 +47,7 @@ class StudioController extends Controller
         }
 
         // membuat data studio
-        $studio = studio::create([
+        $studio = Studio::create([
             "name" => $request->name,
             "location" => $request->location,
             "maxseats" => $request->maxseats
@@ -64,7 +64,7 @@ class StudioController extends Controller
     public function show(string $id)
     {
         // mengambil data studio
-        $studio = studio::find($id);
+        $studio = Studio::find($id);
 
         // mengecek data studio
         if (!$studio) {
@@ -86,7 +86,7 @@ class StudioController extends Controller
     {
 
         // cari data studio
-        $studio = studio::find($id);
+        $studio = Studio::find($id);
 
         // mengecek data studio
         if (!$studio) {
@@ -130,7 +130,7 @@ class StudioController extends Controller
     {
 
         // cari data studio
-        $studio = studio::find($id);
+        $studio = Studio::find($id);
 
         // mengecek data studio
         if (!$studio) {
