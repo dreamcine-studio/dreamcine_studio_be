@@ -21,7 +21,9 @@ class ScheduleController extends Controller
         $validator = Validator::make($request->all(),[
             "movie_id" => "required|integer|exists:movies,id",
             "studio_id" => "required|integer|exists:studios,id",
-            "showtime" => "required|date"
+            "showtime" => "required|date",
+            "showdate_start" => "required|date",
+            "showdate_end" => "required|date"
           ]);
 
           // validasi error
@@ -37,6 +39,8 @@ class ScheduleController extends Controller
         "movie_id" => $request->movie_id,
         "studio_id" => $request->studio_id,
         "showtime" => $request ->showtime,
+        "showdate_start" => $request->showdate_start,
+        "showdate_end" => $request->showdate_end
           ]);
 
             // memberi pesan berhasil
@@ -81,7 +85,9 @@ class ScheduleController extends Controller
           $validator = Validator::make($request->all(), [
             "movie_id" => "required|integer|exists:movies,id",
             "studio_id" => "required|integer|exists:studios,id",
-            "showtime" => "required|date"
+            "showtime" => "required|date",
+            "showdate_start" => "required|date",
+            "showdate_end" => "required|date"
           ]);
 
            // melakukan cek data yang bermasalah
@@ -97,6 +103,8 @@ class ScheduleController extends Controller
           "movie_id" => $request->movie_id,
         "studio_id" => $request->studio_id,
         "showtime" => $request ->showtime,
+        "showdate_start" => $request->showdate_start,
+        "showdate_end" => $request->showdate_end
         ]);
 
         // memberi pesan berhasil
