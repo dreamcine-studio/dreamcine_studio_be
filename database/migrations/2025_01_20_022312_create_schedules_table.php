@@ -15,9 +15,11 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('movie_id');
             $table->unsignedBigInteger('studio_id');
-            $table->dateTime('showtime'); 
-            $table->timestamps(); 
-            
+            $table->time('showtime');
+            $table->date('showdate_start');
+            $table->date('showdate_end');
+            $table->timestamps();
+
         });
     }
 
