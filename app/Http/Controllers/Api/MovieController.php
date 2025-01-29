@@ -41,7 +41,7 @@ class MovieController extends Controller
             'cast' => 'required|string|max:255',
             'duration' => 'required|integer',
             'release_date' => 'required|date|date_format:Y-m-d|before:today',
-            'genre_id' => 'required|integer|exists:genres,id'
+            'genre_id' => 'required|integer'
         ]);
 
         // melakukan cek data yang bermasalah
@@ -121,8 +121,8 @@ class MovieController extends Controller
             'price' => 'nullable|integer',
             'cast' => 'nullable|string|max:255',
             'duration' => 'nullable|string',
-            'release_date' => 'nullable|date|date_format:Y-m-d|before:today',
-            'genre_id' => 'nullable|integer|exists:genres,id'
+            'release_date' => 'nullable|date',
+            'genre_id' => 'nullable|integer'
         ]);
 
         // melakukan cek data yang bermasalah
