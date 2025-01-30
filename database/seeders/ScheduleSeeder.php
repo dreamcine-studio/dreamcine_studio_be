@@ -18,22 +18,22 @@ class ScheduleSeeder extends Seeder
         'studio_id' => 1,
         'showtime'=> ['12:30'],
         'showdate_start' => '2024-12-09',
-        'showdate_end' => '2024-12-09'
+        'showdate_end' => '2025-01-01'
       ]);
 
       Schedule::create([
         'movie_id' => 2,
         'studio_id' => 2,
         'showtime'=> ["14:00", "12.00"],
-        'showdate_start' => '2024-12-10',
-        'showdate_end' => '2024-12-10'
+        'showdate_start' => '2024-07-10',
+        'showdate_end' => '2024-08-10'
       ]);
 
       Schedule::create([
         'movie_id' => 3,
         'studio_id' => 3,
         'showtime'=> ['16:00'],
-        'showdate_start' => '2024-12-11',
+        'showdate_start' => '2024-11-11',
         'showdate_end' => '2024-12-11',
       ]);
     }
