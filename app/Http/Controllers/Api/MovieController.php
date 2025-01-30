@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Movie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class MovieController extends Controller
@@ -136,9 +137,13 @@ class MovieController extends Controller
         // update poster
         if ($request->hasFile('poster')) {
             $image = $request->file('poster');
-            $image->store('movies', 'public');
-            $posterName = $image->hashName();
-            $movie->poster = $posterName;
+            $image->store('books', 'public');
+
+            if ($movie->poster) {
+                Storage::disk('public')->delete('movies/' . $movie->poster);
+            }
+
+            $data['poster'] = $image->hashName();
         }
 
         // update the rest of data
@@ -175,6 +180,11 @@ class MovieController extends Controller
                 "success" => false,
                 "message" => "Resource not found!",
             ], 404);
+        }
+
+        if ($movie->poster) {
+            // delete image from storage
+            Storage::disk('public')->delete('movies/' . $movie->poster);
         }
 
         // hapus data movie
