@@ -42,18 +42,17 @@ class ScheduleController extends Controller
         $schedule = Schedule::create([
             "movie_id" => $request->movie_id,
             "studio_id" => $request->studio_id,
-            "showtime" => [$request->showtime],
+            "showtime" => $request->showtime,
             "showdate_start" => $request->showdate_start,
             "showdate_end" => $request->showdate_end
         ]);
-        dd($schedule);
 
         // memberi pesan berhasil
-        // return response()->json([
-        //     "success" => true,
-        //     "message" => "Resource added successfully!",
-        //     "data" => $schedule
-        // ], 201);
+        return response()->json([
+            "success" => true,
+            "message" => "Resource added successfully!",
+            "data" => $schedule
+        ], 201);
     }
 
     public function show(string $id)
