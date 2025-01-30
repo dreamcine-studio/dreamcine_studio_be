@@ -13,8 +13,22 @@ class Schedule extends Model
         'showdate_start',
         'showdate_end'
     ];
-   
 
+    protected $casts = [
+        'showtime' => 'json', // Simpan sebagai JSON
+    ];
+
+    // Getter
+    public function getShowtimeAttribute($value)
+    {
+        return json_decode($value, true) ?: []; // Gunakan null coalescing operator (??)
+    }
+
+    // Setter
+    public function setShowtimeAttribute($value)
+    {
+        $this->attributes['showtime'] = json_encode($value);
+    }
 
 }
 
