@@ -26,6 +26,8 @@ Route::apiResource('/studios',StudioController::class)->only(['index', 'show']);
 Route::apiResource('/payments',PaymentController::class)->only(['index', 'show']);
 Route::apiResource('/schedules',ScheduleController::class)->only(['index', 'show']);
 Route::apiResource('/payment_methods',PaymentMethodController::class)->only(['index', 'show']);
+Route::apiResource('/schedules', ScheduleController::class)->only(['index', 'show' ]);
+Route::apiResource('/seats',SeatController::class)->only(['index', 'show' ]);
 
 Route::middleware(['auth:api'])->group(function () {
     Route::get('/user', fn(Request $request) => $request->user());
@@ -33,14 +35,20 @@ Route::middleware(['auth:api'])->group(function () {
             // Route::apiResource('/genres', GenreController::class);
             // Route::apiResource('/payment_methods',PaymentMethodController::class);
             // Route::apiResource('/studios',StudioController::class);
+
             // Route::apiResource('/schedules', ScheduleController::class);
+
+            Route::apiResource('/schedules', ScheduleController::class)->only(['store', 'update', 'destroy']);
+            Route::apiResource('/bookings', BookingController::class)->only(['index', 'show']);
             Route::apiResource('/booking', BookingController::class);
+            Route::apiResource('/payments', PaymentController::class)->only(['index', 'store']);
+
 
 
             Route::middleware(['role:admin'])->group(function () {
                 Route::apiResource('/seats',SeatController::class)->only(['store', 'update', 'destroy']);
                 Route::apiResource('/movies', MovieController::class)->only(['store', 'update', 'destroy']);
-                Route::apiResource('/payments', PaymentController::class)->only(['store', 'update', 'destroy']);
+                Route::apiResource('/payments', PaymentController::class)->only(['update', 'destroy']);
                 Route::apiResource('/payment_methods',PaymentMethodController::class)->only(['store', 'update', 'destroy']);
                 Route::apiResource('/genres',GenreController::class)->only(['store', 'update', 'destroy']);
                 Route::apiResource('/studios',StudioController::class)->only(['store', 'update', 'destroy']);
