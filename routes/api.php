@@ -23,6 +23,8 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:api'
 Route::apiResource('/movies', MovieController::class)->only(['index', 'show']);
 Route::apiResource('/genres', GenreController::class)->only(['index', 'show']);
 Route::apiResource('/studios',StudioController::class)->only(['index', 'show']);
+Route::apiResource('/payments',PaymentController::class)->only(['index', 'show']);
+Route::apiResource('/schedules',ScheduleController::class)->only(['index', 'show']);
 Route::apiResource('/payment_methods',PaymentMethodController::class)->only(['index', 'show']);
 Route::apiResource('/schedules', ScheduleController::class)->only(['index', 'show' ]);
 Route::apiResource('/seats',SeatController::class)->only(['index', 'show' ]);
@@ -33,6 +35,8 @@ Route::middleware(['auth:api'])->group(function () {
             // Route::apiResource('/genres', GenreController::class);
             // Route::apiResource('/payment_methods',PaymentMethodController::class);
             // Route::apiResource('/studios',StudioController::class);
+
+            // Route::apiResource('/schedules', ScheduleController::class);
 
             Route::apiResource('/schedules', ScheduleController::class)->only(['store', 'update', 'destroy']);
             Route::apiResource('/bookings', BookingController::class)->only(['index', 'show', 'store']);
