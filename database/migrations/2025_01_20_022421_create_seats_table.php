@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('seats', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('studio_id');
-            $table->integer('seat_number');
+            $table->string('seat_number');
             $table->boolean('isbooked');
             $table->timestamps();
         });

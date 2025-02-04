@@ -18,6 +18,7 @@ return new class extends Migration
             $table->time('showtime');
             $table->integer('quantity');
             $table->timestamps();
+            $table->integer('amount');
         });
     }
 
