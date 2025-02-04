@@ -16,7 +16,7 @@ class SeatSeeder extends Seeder
         Seat::create([
             'studio_id' => 1,
             'seat_number' => 1,
-            'isbooked' => true
+            'isbooked' => True
         ]);
         Seat::create([
             'studio_id' => 2,
