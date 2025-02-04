@@ -38,7 +38,7 @@ class BookingController extends Controller
             "user_id" => "required|integer|exists:users,id",
             "schedule_id" => "required|integer|exists:schedules,id",
             "quantity" => "required|integer",
-            "booking_date" => "required|date",
+            "showtime" => "required|date_format:H:i",
         ]);
 
         // melakukan cek data yang bermasalah
@@ -54,7 +54,7 @@ class BookingController extends Controller
             "user_id" => $request->user_id,
             "schedule_id" => $request->schedule_id,
             "quantity" => $request->quantity,
-            "booking_date" => $request->booking_date,
+            "showtime" => $request->showtime
         ]);
 
         // memberi pesan berhasil
@@ -105,7 +105,7 @@ class BookingController extends Controller
             "user_id" => "required|integer|exists:users,id",
             "schedule_id" => "required|integer|exists:schedules,id",
             "quantity" => "required|integer",
-            "booking_date" => "required|date",
+            "showtime" => "required|date_format:H:i",
         ]);
 
         // melakukan cek data yang bermasalah
@@ -121,7 +121,7 @@ class BookingController extends Controller
             "user_id" => $request->user_id,
             "schedule_id" => $request->schedule_id,
             "quantity" => $request->quantity,
-            "booking_date" => $request->booking_date,
+            "showtime" => $request->showtime
         ]);
 
         // memberi pesan berhasil
