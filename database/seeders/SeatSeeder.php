@@ -15,17 +15,17 @@ class SeatSeeder extends Seeder
     {
         Seat::create([
             'studio_id' => 1,
-            'seat_number' => 1,
+            'seat_number' => ['A1', 'A2'],
             'isbooked' => true
         ]);
         Seat::create([
             'studio_id' => 2,
-            'seat_number' => 11,
+            'seat_number' => ['B1', 'B2', 'B3'],
             'isbooked' => true
         ]);
         Seat::create([
             'studio_id' => 3,
-            'seat_number' => 25,
+            'seat_number' => ['C15', 'C16'],
             'isbooked' => true
         ]);
     }

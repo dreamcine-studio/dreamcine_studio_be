@@ -21,8 +21,7 @@ class SeatController extends Controller
     public function store(Request $request) {
         $validator = Validator::make($request->all(),[
             "studio_id" => "required|exists:studios,id",
-            "seat_number" => "required|integer",
-            "isbooked" => "required|boolean"
+            "seat_number" => "required|array",
           ]);
 
           // validasi error
@@ -44,7 +43,7 @@ class SeatController extends Controller
         $seat = Seat::create([
           "studio_id" => $request->studio_id,
           "seat_number" => $request->seat_number,
-          "isbooked" => $request->isbooked
+          "isbooked" => true
           ]);
 
             // memberi pesan berhasil
@@ -88,7 +87,7 @@ class SeatController extends Controller
             // membuat validasi
           $validator = Validator::make($request->all(), [
             "studio_id" => "required|exists:studios,id",
-            "seat_number" => "required|integer",
+            "seat_number" => "required|array",
             "isbooked" => "required|boolean"
           ]);
 
