@@ -38,7 +38,6 @@ class PaymentController extends Controller
         ], 200);
     }
 
-    //==================================================================================================
     // store
     public function store(Request $request) {
 
@@ -65,8 +64,7 @@ class PaymentController extends Controller
      $schedule = Schedule::find($booking->schedule_id);
      $movie = Movie::find($schedule->movie_id);
 
-    // dd($movie);
-    //  // ambil data amount
+    // ambil data amount
      $amount = $booking->quantity * $movie->price;
 
 
@@ -112,10 +110,6 @@ class PaymentController extends Controller
     }
 
 
-
-
-
-    //==================================================================================================
     // update
 
     public function update(Request $request, string $id) {
@@ -131,8 +125,6 @@ class PaymentController extends Controller
 
         // 2. membuat validasi
         $validator = Validator::make($request->all(), [
-            // 'order_id' => 'required|exists:orders,id',
-            // 'payment_method_id' => 'required|exists:payment_methods,id',
             'status'=> 'required|string'
         ]);
 
@@ -156,12 +148,9 @@ class PaymentController extends Controller
                 ], 401);
             }
 
-        // ambil data order
-        // $order = Order::find($request->order_id);
+
 
         $payment->update([
-            // 'order_id' => $request->order_id,
-            // 'payment_method_id' => $request->payment_method_id,
             'status'=> $request->status,
             "staff_confirmed_by"=> auth('api')->user()->name,
             "staff_confirmed_at" => now()
@@ -175,7 +164,6 @@ class PaymentController extends Controller
     }
 
 
-    //==================================================================================================
     // destroy
     public function destroy (string $id) {
         $payment = Payment::find($id);
