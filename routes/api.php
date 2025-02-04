@@ -39,12 +39,9 @@ Route::middleware(['auth:api'])->group(function () {
             Route::apiResource('/bookings', BookingController::class)->only(['index', 'show', 'store']);
 
 
-<<<<<<< HEAD
-=======
             Route::apiResource('/schedules', ScheduleController::class)->only(['store', 'update', 'destroy']);
             Route::apiResource('/bookings', BookingController::class)->only(['index', 'show', 'store']);
             Route::apiResource('/payments', PaymentController::class)->only(['index', 'store']);
->>>>>>> 1af0f1f042f9b076bc0618dcb1be4051e5a8a1c0
 
 
 
