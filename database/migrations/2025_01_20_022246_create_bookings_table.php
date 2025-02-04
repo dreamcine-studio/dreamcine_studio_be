@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('schedule_id');
+            $table->time('showtime');
             $table->integer('quantity');
-            $table->date('booking_date');
             $table->timestamps();
         });
     }

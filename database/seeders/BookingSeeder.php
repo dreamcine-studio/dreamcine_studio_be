@@ -16,19 +16,19 @@ class BookingSeeder extends Seeder
             'user_id' => 1,
             'schedule_id' => 1,
             'quantity' => 1,
-            'booking_date' => '2024-12-09'
+            'showtime' => '12:00',
         ]);
         Booking::create([
             'user_id' => 2,
             'schedule_id' => 2,
             'quantity' => 1,
-            'booking_date' => '2024-12-10'
+            'showtime' => '15:00',
         ]);
         Booking::create([
             'user_id' => 3,
             'schedule_id' => 3,
             'quantity' => 3,
-            'booking_date' => '2024-12-11'
+            'showtime' => '19:00',
         ]);
     }
 }
