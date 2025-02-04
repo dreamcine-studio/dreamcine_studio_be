@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\SeatController;
 use App\Http\Controllers\Api\StudioController;
 use App\Http\Controllers\Api\ScheduleController;
 use App\Http\Controllers\Api\BookingController;
+use App\Models\Seat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -42,11 +43,12 @@ Route::middleware(['auth:api'])->group(function () {
             Route::apiResource('/schedules', ScheduleController::class)->only(['store', 'update', 'destroy']);
             Route::apiResource('/bookings', BookingController::class)->only(['index', 'show', 'store']);
             Route::apiResource('/payments', PaymentController::class)->only(['index', 'store']);
+            Route::apiResource('/seats', SeatController::class)->only(['store']);
 
 
 
             Route::middleware(['role:admin'])->group(function () {
-                Route::apiResource('/seats',SeatController::class)->only(['store', 'update', 'destroy']);
+                Route::apiResource('/seats',SeatController::class)->only(['update', 'destroy']);
                 Route::apiResource('/movies', MovieController::class)->only(['store', 'update', 'destroy']);
                 Route::apiResource('/payments', PaymentController::class)->only(['update', 'destroy']);
                 Route::apiResource('/payment_methods',PaymentMethodController::class)->only(['store', 'update', 'destroy']);

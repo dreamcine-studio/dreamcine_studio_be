@@ -17,4 +17,20 @@ class Seat extends Model
                    ->where('isbooked', true)
                    ->exists();
     }
+
+    protected $casts = [
+        'seat_number' => 'json', // Simpan sebagai JSON
+    ];
+
+    public function getSeatNumberAttribute($value)
+    {
+        return json_decode($value, true) ?: []; // Gunakan null coalescing operator (??)
+    }
+
+    // Setter
+    public function setSeatNumberAttribute($value)
+    {
+        $this->attributes['seat_number'] = json_encode($value);
+    }
+
 }
