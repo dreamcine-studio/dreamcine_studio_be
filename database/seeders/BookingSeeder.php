@@ -17,18 +17,21 @@ class BookingSeeder extends Seeder
             'schedule_id' => 1,
             'quantity' => 1,
             'showtime' => '12:00',
+            'amount' => 15000
         ]);
         Booking::create([
             'user_id' => 2,
             'schedule_id' => 2,
             'quantity' => 1,
             'showtime' => '15:00',
+            'amount' => 41000
         ]);
         Booking::create([
             'user_id' => 3,
             'schedule_id' => 3,
             'quantity' => 3,
             'showtime' => '19:00',
+            'amount' => 73000
         ]);
     }
 }
