@@ -106,66 +106,69 @@ class MovieController extends Controller
         // cari data movie
         $movie = Movie::find($id);
 
-        // mengecek data movie
-        if (!$movie) {
-            return response()->json([
-                "success" => false,
-                "message" => "Resource not found!"
-            ], 404);
-        }
+    // Mengecek apakah movie ditemukan
+    if (!$movie) {
+        return response()->json([
+            "success" => false,
+            "message" => "Resource not found!"
+        ], 404);
+    }
 
         // membuat validasi
         $validator = Validator::make($request->all(), [
             "title" => "nullable|string",
             "description" => "nullable|string|max:255",
             'poster' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'price' => 'nullable|integer',
+            'price' => 'nullable|numeric',
             'cast' => 'nullable|string|max:255',
             'duration' => 'nullable|string',
-            'release_date' => 'nullable|date',
-            'genre_id' => 'nullable|integer'
+            'release_date' => 'nullable|date|date_format:Y-m-d|before:today',
+            'genre_id' => 'nullable|integer|exists:genres,id'
         ]);
 
-        // melakukan cek data yang bermasalah
-        if ($validator->fails()) {
-            return response()->json([
-                "success" => false,
-                "message" => $validator->errors()
-            ], 422);
-        }
-
-        // update poster
-        if ($request->hasFile('poster')) {
-            $image = $request->file('poster');
-            $image->store('books', 'public');
-
-            if ($movie->poster) {
-                Storage::disk('public')->delete('movies/' . $movie->poster);
-            }
-
-            $data['poster'] = $image->hashName();
-        }
-
-        // update the rest of data
-        $movie->fill($request->only([
-            'title',
-            'description',
-            'price',
-            'cast',
-            'duration',
-            'release_date',
-            'genre_id'
-        ]));
-
-        // update data movie
-        $movie->save();
-
-        // memberi pesan berhasil
+    // Jika validasi gagal
+    if ($validator->fails()) {
         return response()->json([
-            "success" => true,
-            "message" => "Resource updated successfully!",
-            "data" => $movie
-        ], 200);
+            "success" => false,
+            "message" => $validator->errors()
+        ], 422);
+    }
+
+    // Data yang akan diperbarui
+    $data = $request->only([
+        'title',
+        'description',
+        'price',
+        'cast',
+        'duration',
+        'release_date',
+        'genre_id'
+    ]);
+
+    // Update poster jika ada file yang diunggah
+    if ($request->hasFile('poster')) {
+        // Hapus poster lama jika ada
+        if ($movie->poster) {
+            Storage::disk('public')->delete('movies/' . $movie->poster);
+        }
+
+        // Simpan poster baru
+        $image = $request->file('poster');
+        $imagePath = $image->store('movies', 'public');
+
+        // Simpan hanya nama file ke dalam database
+        $data['poster'] = basename($imagePath);
+    }
+
+    // Update data movie
+    $movie->update($data);
+
+    // Beri pesan sukses
+    return response()->json([
+        "success" => true,
+        "message" => "Resource updated successfully!",
+        "data" => $movie
+    ], 200);
     }
 
     public function destroy(string $id)
