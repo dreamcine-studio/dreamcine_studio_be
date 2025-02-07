@@ -30,6 +30,7 @@ Route::apiResource('/payment_methods',PaymentMethodController::class)->only(['in
 Route::apiResource('/schedules', ScheduleController::class)->only(['index', 'show' ]);
 Route::apiResource('/seats',SeatController::class)->only(['index', 'show' ]);
 Route::apiResource('/schedules', ScheduleController::class)->only(['index', 'show']);
+Route::get('/movie-genre/{genreId}', [MovieController::class, 'showUserId']);
 
 Route::middleware(['auth:api'])->group(function () {
     Route::get('/user', fn(Request $request) => $request->user());
@@ -37,7 +38,6 @@ Route::middleware(['auth:api'])->group(function () {
             // Route::apiResource('/genres', GenreController::class);
             // Route::apiResource('/payment_methods',PaymentMethodController::class);
             // Route::apiResource('/studios',StudioController::class);
-            Route::apiResource('/bookings', BookingController::class)->only(['index', 'show', 'store']);
 
 
             Route::apiResource('/schedules', ScheduleController::class)->only(['store', 'update', 'destroy']);

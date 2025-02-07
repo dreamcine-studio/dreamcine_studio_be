@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Movie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -199,4 +200,24 @@ class MovieController extends Controller
             "message" => "Resource deleted successfully!",
         ], 200);
     }
+
+    public function showUserId(string $genreId) {
+        $movie = DB::table('movies')->where('genre_id' , $genreId)->get();
+
+        if (!$movie) {
+            return response()->json([
+                "success" => false,
+                "message" => "Resource movie not found!"
+            ], 404);
+        }
+
+        // memberi pesan berhasil
+        return response()->json([
+            "success" => true,
+            "message" => "Get detail movie resource",
+            "data" => $movie
+        ], 200);
+    }
+
+
 }
