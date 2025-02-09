@@ -15,20 +15,20 @@ class StudioSeeder extends Seeder
     {
         Studio::create([
             'name' => 'Kelapa Gading XXI',
-            'location' => 'lantai 2',
-            'maxseats' => '25'
+            'location' => 'Studio 2',
+            'maxseats' => '165'
 
         ]);
         Studio::create([
             'name' => 'Depok Mall CGV',
-            'location' => 'lantai 3',
-            'maxseats' => '25'
+            'location' => 'Studio 3',
+            'maxseats' => '165'
 
         ]);
         Studio::create([
             'name' => 'Pondok Indah Mall XXI',
-            'location' => 'lantai 4',
-            'maxseats' => '25'
+            'location' => 'Studio 4',
+            'maxseats' => '165'
 
         ]);
     }
