@@ -24,7 +24,11 @@ class ScheduleSeeder extends Seeder
       Schedule::create([
         'movie_id' => 2,
         'studio_id' => 2,
+<<<<<<< HEAD
         'showtime'=> ["14:00", "12:00"],
+=======
+        'showtime'=> ["12:00", "14:00"],
+>>>>>>> 7d5ae63b55001d36f441e5eeb14f210250759cf1
         'showdate_start' => '2024-07-10',
         'showdate_end' => '2024-08-10'
       ]);
