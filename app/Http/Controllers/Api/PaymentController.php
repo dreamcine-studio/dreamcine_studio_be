@@ -43,12 +43,9 @@ class PaymentController extends Controller
 
         // 1. membuat validasi
         $validator = Validator::make($request->all(), [
-            'payment_code' => 'nullable|string|max:255',
             'booking_id' => 'nullable|exists:bookings,id',
             'payment_method_id' => 'nullable|exists:payment_methods,id',
             'amount' => 'nullable|numeric|min:0',
-            // 'payment_date' => 'nullable|date',
-            'status' => 'nullable|in:pending,confirmed,failed',
         ]);
 
         // 2. melakukan cek data yang bermasalah
@@ -61,11 +58,7 @@ class PaymentController extends Controller
 
      // ambil data booking
      $booking = Booking::find($request->booking_id);
-     $schedule = Schedule::find($booking->schedule_id);
-     $movie = Movie::find($schedule->movie_id);
-
-    // ambil data amount
-     $amount = $booking->quantity * $movie->price;
+     $amount = $booking->amount;
 
 
     // Buat paymnet_code unik
@@ -77,9 +70,9 @@ class PaymentController extends Controller
             'booking_id' => $request->booking_id,
             'payment_method_id' => $request->payment_method_id,
             'amount'=> $amount,
-            'status'=> 'pending',
             "payment_code" => $payment_Code,
-            "payment_date" => $request->payment_date ?? now()
+            "payment_date" => now(),
+            'status'=> 'pending',
 
 
         ]);
