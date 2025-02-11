@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('studios', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('location');
             $table->integer('maxseats');
             $table->timestamps();
         });
