@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Movie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -38,11 +39,11 @@ class MovieController extends Controller
             'title' => 'required|string',
             "description" => "nullable|string|max:255",
             'poster' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'price' => 'required|numeric',
+            'price' => 'required|integer',
             'cast' => 'required|string|max:255',
             'duration' => 'required|integer',
             'release_date' => 'required|date|date_format:Y-m-d|before:today',
-            'genre_id' => 'required|integer|exists:genres,id'
+            'genre_id' => 'required|integer'
         ]);
 
         // melakukan cek data yang bermasalah
@@ -114,17 +115,17 @@ class MovieController extends Controller
         ], 404);
     }
 
-    // Membuat validasi
-    $validator = Validator::make($request->all(), [
-        "title" => "nullable|string",
-        "description" => "nullable|string",
-        'poster' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        'price' => 'nullable|numeric',
-        'cast' => 'nullable|string|max:255',
-        'duration' => 'nullable|string',
-        'release_date' => 'nullable|date|date_format:Y-m-d|before:today',
-        'genre_id' => 'nullable|integer|exists:genres,id'
-    ]);
+        // membuat validasi
+        $validator = Validator::make($request->all(), [
+            "title" => "nullable|string",
+            "description" => "nullable|string|max:255",
+            'poster' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'price' => 'nullable|numeric',
+            'cast' => 'nullable|string|max:255',
+            'duration' => 'nullable|string',
+            'release_date' => 'nullable|date|date_format:Y-m-d|before:today',
+            'genre_id' => 'nullable|integer|exists:genres,id'
+        ]);
 
     // Jika validasi gagal
     if ($validator->fails()) {
@@ -199,4 +200,24 @@ class MovieController extends Controller
             "message" => "Resource deleted successfully!",
         ], 200);
     }
+
+    public function showUserId(string $genreId) {
+        $movie = DB::table('movies')->where('genre_id' , $genreId)->get();
+
+        if (!$movie) {
+            return response()->json([
+                "success" => false,
+                "message" => "Resource movie not found!"
+            ], 404);
+        }
+
+        // memberi pesan berhasil
+        return response()->json([
+            "success" => true,
+            "message" => "Get detail movie resource",
+            "data" => $movie
+        ], 200);
+    }
+
+
 }

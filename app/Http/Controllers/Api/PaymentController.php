@@ -69,7 +69,7 @@ class PaymentController extends Controller
 
 
     // Buat paymnet_code unik
-     $payment_Code = "Code -". strtoupper(uniqid());
+     $payment_Code = "PC-". strtoupper(uniqid());
 
 
      // 3. membuat data payment
