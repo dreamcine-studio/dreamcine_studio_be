@@ -11,11 +11,11 @@ class UserController extends Controller
     //
     public function index()
     {
-        // mengambil data genre
-        $genres = User::all();
+        // mengambil data user
+        $users = User::all();
 
-        // mengecek data genre
-        if ($genres->isEmpty()) {
+        // mengecek data user
+        if ($users->isEmpty()) {
             return response()->json([
                 "success" => true,
                 "message" => "Resource data not found!"
@@ -26,7 +26,7 @@ class UserController extends Controller
         return response()->json([
             "success" => true,
             "message" => "Get All Resource",
-            "data" => $genres
+            "data" => $users
         ], 200);
     }
 }
