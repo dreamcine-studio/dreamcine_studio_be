@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\SeatController;
 use App\Http\Controllers\Api\StudioController;
 use App\Http\Controllers\Api\ScheduleController;
 use App\Http\Controllers\Api\BookingController;
+use App\Http\Controllers\Api\UserController;
 use App\Models\Seat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -54,6 +55,7 @@ Route::middleware(['auth:api'])->group(function () {
                 Route::apiResource('/studios',StudioController::class)->only(['store', 'update', 'destroy']);
                 Route::apiResource('/schedules', ScheduleController::class)->only(['store', 'update', 'destroy', 'show']);
                 Route::apiResource('/bookings', BookingController::class)->only(['update', 'destroy']);
+                Route::apiResource('/users', UserController::class)->only(['index']);
 
             });
 
