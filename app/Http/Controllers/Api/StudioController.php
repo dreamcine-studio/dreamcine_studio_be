@@ -34,7 +34,6 @@ class StudioController extends Controller
         // membuat validasi
         $validator = Validator::make($request->all(), [
             "name" => "required|string",
-            "location" => "required|string",
             "maxseats" => "required|integer"
         ]);
 
@@ -49,7 +48,6 @@ class StudioController extends Controller
         // membuat data studio
         $studio = studio::create([
             "name" => $request->name,
-            "location" => $request->location,
             "maxseats" => $request->maxseats
         ]);
 
@@ -99,7 +97,6 @@ class StudioController extends Controller
         // membuat validasi
         $validator = Validator::make($request->all(), [
             "name" => "required|string",
-            "location" => "required|string",
             "maxseats" => "required|integer"
         ]);
 
@@ -114,7 +111,6 @@ class StudioController extends Controller
         // update data studio
         $studio->update([
             "name" => $request->name,
-            "location" => $request->location,
             "maxseats" => $request->maxseats
         ]);
 
