@@ -14,17 +14,17 @@ class StudioSeeder extends Seeder
     public function run(): void
     {
         Studio::create([
-            'name' => 'Kelapa Gading XXI',
+            'name' => 'Theater 1',
             'maxseats' => '165'
 
         ]);
         Studio::create([
-            'name' => 'Depok Mall CGV',
+            'name' => 'Theater 2',
             'maxseats' => '165'
 
         ]);
         Studio::create([
-            'name' => 'Pondok Indah Mall XXI',
+            'name' => 'Theater 3',
             'maxseats' => '165'
 
         ]);
