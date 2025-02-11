@@ -18,7 +18,7 @@ class PaymentSeeder extends Seeder
                 "payment_code" => "01234",
                 "booking_id" => 1,
                 "payment_method_id" => 1,
-                "amount" => 30,
+                "amount" => 30000,
                 "payment_date" => "2024-01-19",
                 "status" => "pending"
         ]);
@@ -27,7 +27,7 @@ class PaymentSeeder extends Seeder
                 "payment_code" => "0AB12",
                 "booking_id" => 2,
                 "payment_method_id" => 2,
-                "amount" => 14,
+                "amount" => 14000,
                 "payment_date" => "2024-01-19",
                 "status" => "pending"
     ]);
@@ -36,7 +36,7 @@ class PaymentSeeder extends Seeder
                 "payment_code" => "01234",
                 "booking_id" => 3,
                 "payment_method_id" => 3,
-                "amount" => 15,
+                "amount" => 15000,
                 "payment_date" => "2024-01-19",
                 "status" => "pending"
 ]);
