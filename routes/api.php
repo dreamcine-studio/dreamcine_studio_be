@@ -9,8 +9,10 @@ use App\Http\Controllers\Api\SeatController;
 use App\Http\Controllers\Api\StudioController;
 use App\Http\Controllers\Api\ScheduleController;
 use App\Http\Controllers\Api\BookingController;
+use App\Http\Controllers\Api\ShowtimeController;
 use App\Http\Controllers\Api\UserController;
 use App\Models\Seat;
+use App\Models\Showtime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +24,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:api');
 
 
+Route::apiResource('/showtimes', ShowtimeController::class);
 Route::apiResource('/movies', MovieController::class)->only(['index', 'show']);
 Route::apiResource('/genres', GenreController::class)->only(['index', 'show']);
 Route::apiResource('/studios',StudioController::class)->only(['index', 'show']);

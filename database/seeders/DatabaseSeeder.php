@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Showtime;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -18,7 +19,8 @@ class DatabaseSeeder extends Seeder
             BookingSeeder::class,
             SeatSeeder::class,
             PaymentSeeder::class,
-            UserSeeder::class
+            UserSeeder::class,
+            ShowtimeSeeder::class
         ]);
     }
 }
