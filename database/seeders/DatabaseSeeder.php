@@ -16,11 +16,12 @@ class DatabaseSeeder extends Seeder
             StudioSeeder::class,
             MovieSeeder::class,
             ScheduleSeeder::class,
+            ShowtimeSeeder::class,
+            ScheduleShowtimeSeeder::class,
             BookingSeeder::class,
             SeatSeeder::class,
             PaymentSeeder::class,
             UserSeeder::class,
-            ShowtimeSeeder::class
         ]);
     }
 }

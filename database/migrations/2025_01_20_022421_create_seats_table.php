@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('seats', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('studio_id');
+            $table->unsignedBigInteger('schedule_showtime_id');
             $table->string('seat_number');
             $table->boolean('isbooked');
             $table->timestamps();

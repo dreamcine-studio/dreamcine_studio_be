@@ -19,9 +19,10 @@ class SeatController extends Controller
       }
 
     public function store(Request $request) {
+
         $validator = Validator::make($request->all(),[
-            "studio_id" => "required|exists:studios,id",
-            "seat_number" => "required|array",
+            "schedule_showtime_id" => "required|exists:schedule_showtimes,id",
+            "seat_number" => "required|array|min:1",
           ]);
 
           // validasi error
@@ -32,7 +33,9 @@ class SeatController extends Controller
         ], 422);
     };
 
-    if (Seat::isSeatBooked($request->studio_id, $request->seat_number)) {
+
+
+    if (Seat::isSeatBooked($request->schedule_showtime_id, $request->seat_number)) {
         return response()->json([
             "success" => false,
             "message" => "Seat number already booked!"
@@ -41,7 +44,7 @@ class SeatController extends Controller
 
           // insert data
         $seat = Seat::create([
-          "studio_id" => $request->studio_id,
+          "schedule_showtime_id" => $request->schedule_showtime_id,
           "seat_number" => $request->seat_number,
           "isbooked" => true
           ]);
@@ -86,8 +89,8 @@ class SeatController extends Controller
 
             // membuat validasi
           $validator = Validator::make($request->all(), [
-            "studio_id" => "required|exists:studios,id",
-            "seat_number" => "required|array",
+            "schedule_showtime_id" => "required|exists:schedule_showtimes,id",
+            "seat_number" => "required|array|min:1",
             "isbooked" => "required|boolean"
           ]);
 
@@ -101,7 +104,7 @@ class SeatController extends Controller
 
           // update data seat
         $seat->update([
-          "studio_id" => $request->studio_id,
+          "schedule_showtime_id" => $request->schedule_showtime_id,
           "seat_number" => $request->seat_number,
           "isbooked" => $request->isbooked
         ]);

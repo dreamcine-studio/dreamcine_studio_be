@@ -17,10 +17,10 @@ class ShowtimeSeeder extends Seeder
             'sequence' => "12:00"
         ]);
         Showtime::create([
-            'sequence' => "16:00"
+            'sequence' => "14:00"
         ]);
         Showtime::create([
-            'sequence' => "14:00"
+            'sequence' => "16:00"
         ]);
     }
 }

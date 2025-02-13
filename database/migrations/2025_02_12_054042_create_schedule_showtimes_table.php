@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('schedules', function (Blueprint $table) {
+        Schema::create('schedule_showtimes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('movie_id');
-            $table->unsignedBigInteger('studio_id');
-            $table->date('showdate_start');
-            $table->date('showdate_end');
+            $table->unsignedBigInteger('schedule_id');
+            $table->unsignedBigInteger('showtime_id');
             $table->timestamps();
-
         });
     }
 
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('schedules');
+        Schema::dropIfExists('schedule_showtimes');
     }
 };

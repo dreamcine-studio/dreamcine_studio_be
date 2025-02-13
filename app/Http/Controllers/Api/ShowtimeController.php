@@ -22,7 +22,7 @@ class ShowtimeController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            "sequence" => "required|time",
+            "sequence" => "required|date_format:H:i",
         ]);
 
         // validasi error
@@ -82,7 +82,7 @@ class ShowtimeController extends Controller
 
         // membuat validasi
         $validator = Validator::make($request->all(), [
-            "sequence" => "required|time",
+            "sequence" => "required|date_format:H:i",
         ]);
 
         // melakukan cek data yang bermasalah

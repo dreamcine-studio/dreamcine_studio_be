@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\SeatController;
 use App\Http\Controllers\Api\StudioController;
 use App\Http\Controllers\Api\ScheduleController;
 use App\Http\Controllers\Api\BookingController;
+use App\Http\Controllers\Api\ScheduleShowtimeController;
 use App\Http\Controllers\Api\ShowtimeController;
 use App\Http\Controllers\Api\UserController;
 use App\Models\Seat;
@@ -24,7 +25,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:api');
 
 
-Route::apiResource('/showtimes', ShowtimeController::class);
+Route::apiResource('/showtimes', ShowtimeController::class)->only(['index', 'show']);
 Route::apiResource('/movies', MovieController::class)->only(['index', 'show']);
 Route::apiResource('/genres', GenreController::class)->only(['index', 'show']);
 Route::apiResource('/studios',StudioController::class)->only(['index', 'show']);
@@ -33,6 +34,8 @@ Route::apiResource('/schedules',ScheduleController::class)->only(['index', 'show
 Route::apiResource('/payment_methods',PaymentMethodController::class)->only(['index', 'show']);
 Route::apiResource('/seats',SeatController::class)->only(['index', 'show' ]);
 Route::get('/movie-genre/{genreId}', [MovieController::class, 'showUserId']);
+Route::apiResource('/scheduleshowtime', ScheduleShowtimeController::class)->only(['index', 'show']);
+
 
 Route::middleware(['auth:api'])->group(function () {
     Route::get('/user', fn(Request $request) => $request->user());
@@ -59,6 +62,8 @@ Route::middleware(['auth:api'])->group(function () {
                 Route::apiResource('/schedules', ScheduleController::class)->only(['store', 'update', 'destroy', 'show']);
                 Route::apiResource('/bookings', BookingController::class)->only(['update', 'destroy']);
                 Route::apiResource('/users', UserController::class)->only(['index']);
+                Route::apiResource('/scheduleshowtime', ScheduleShowtimeController::class)->only(['store','update', 'destroy']);
+                Route::apiResource('/showtimes', ShowtimeController::class)->only(['store','update', 'destroy']);
 
             });
 

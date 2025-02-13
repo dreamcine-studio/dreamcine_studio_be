@@ -3,29 +3,27 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Schedule;
+use App\Models\ScheduleShowtime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class ScheduleController extends Controller
+class ScheduleShowtimeController extends Controller
 {
     public function index()
     {
-        $schedule = Schedule::all();
+        $scheduleShowtime = ScheduleShowtime::all();
         return response()->json([
             "success" => true,
             "message" => "Get All Resource",
-            "data" => $schedule
+            "data" => $scheduleShowtime
         ], 200);
     }
 
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            "movie_id" => "required|integer|exists:movies,id",
-            "studio_id" => "required|integer|exists:studios,id",
-            "showdate_start" => "required|date",
-            "showdate_end" => "required|date"
+            "schedule_id" => "required|integer|exists:schedules,id",
+            "showtime_id" => "nullable|integer|exists:showtimes,id",
         ]);
 
         // validasi error
@@ -38,26 +36,24 @@ class ScheduleController extends Controller
 
 
         // insert data
-        $schedule = Schedule::create([
-            "movie_id" => $request->movie_id,
-            "studio_id" => $request->studio_id,
-            "showdate_start" => $request->showdate_start,
-            "showdate_end" => $request->showdate_end
+        $scheduleShowtime = ScheduleShowtime::create([
+            "schedule_id" => $request->schedule_id,
+            "showtime_id" => $request->showtime_id,
         ]);
 
         // memberi pesan berhasil
         return response()->json([
             "success" => true,
             "message" => "Resource added successfully!",
-            "data" => $schedule
+            "data" => $scheduleShowtime,
         ], 201);
     }
 
     public function show(string $id)
     {
-        $schedule = Schedule::find($id);
+        $scheduleShowtime = ScheduleShowtime::find($id);
 
-        if (!$schedule) {
+        if (!$scheduleShowtime) {
             return response()->json([
                 "success" => false,
                 "message" => "Resource not found"
@@ -67,31 +63,27 @@ class ScheduleController extends Controller
         return response()->json([
             "success" => true,
             "message" => "Get detail resource",
-            "data" => $schedule
+            "data" => $scheduleShowtime
         ], 200); // validasi create success
     }
 
     public function update(Request $request, string $id)
     {
         // cari data schedule
-        $schedule = Schedule::find($id);
+        $scheduleShowtime = ScheduleShowtime::find($id);
 
         // mengecek data schedule
-        if (!$schedule) {
+        if (!$scheduleShowtime) {
             return response()->json([
                 "success" => false,
                 "message" => "Resource not found!"
             ], 404);
         }
 
-
-
         // membuat validasi
         $validator = Validator::make($request->all(), [
-            "movie_id" => "required|integer|exists:movies,id",
-            "studio_id" => "required|integer|exists:studios,id",
-            "showdate_start" => "required|date",
-            "showdate_end" => "required|date"
+            "schedule_id" => "required|integer|exists:schedules,id",
+            "showtime_id" => "required|integer|exists:showtimes,id",
         ]);
 
         // melakukan cek data yang bermasalah
@@ -103,28 +95,26 @@ class ScheduleController extends Controller
         }
 
         // update data schedule
-        $schedule->update([
-            "movie_id" => $request->movie_id,
-            "studio_id" => $request->studio_id,
-            "showdate_start" => $request->showdate_start,
-            "showdate_end" => $request->showdate_end
-        ]);
+            $scheduleShowtime->update([
+                "schedule_id" => $request->schedule_id,
+                "showtime_id" => $request->showtime_id
+            ]);
 
-        // memberi pesan berhasil
+        // Return response setelah update berhasil
         return response()->json([
             "success" => true,
             "message" => "Resource updated successfully!",
-            "data" => $schedule
+            "data" => $scheduleShowtime,
         ], 200);
     }
 
     public function destroy(string $id)
     {
         // cari data sce$schedule
-        $schedule = Schedule::find($id);
+        $scheduleShowtime = ScheduleShowtime::find($id);
 
         // mengecek data sce$schedule
-        if (!$schedule) {
+        if (!$scheduleShowtime) {
             return response()->json([
                 "success" => false,
                 "message" => "Resource not found!"
@@ -132,7 +122,7 @@ class ScheduleController extends Controller
         }
 
         // hapus data schedule
-        $schedule->delete();
+        $scheduleShowtime->delete();
 
         // memberi pesan berhasil
         return response()->json([
