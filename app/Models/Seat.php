@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Seat extends Model
 {
     protected $fillable = [
-        'schedule_showtime_id','seat_number', 'isbooked'
+        'schedule_showtime_id', 'showdate', 'seat_number', 'isbooked'
     ];
 
-    public static function isSeatBooked($studioId, $seatNumber)
+    public static function isSeatBooked($scheduleShowtimeId, $seatNumber)
     {
-        return self::where('schedule_showtime_id', $studioId)
+        return self::where('schedule_showtime_id', $scheduleShowtimeId)
                    ->whereIn('seat_number', $seatNumber)
                    ->where('isbooked', true)
                    ->exists();

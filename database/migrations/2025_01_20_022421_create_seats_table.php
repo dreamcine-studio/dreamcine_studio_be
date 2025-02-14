@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('schedule_showtime_id');
             $table->string('seat_number');
+            $table->date('showdate')->default(now());
             $table->boolean('isbooked');
             $table->timestamps();
         });

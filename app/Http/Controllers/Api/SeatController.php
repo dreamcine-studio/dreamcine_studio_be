@@ -23,6 +23,7 @@ class SeatController extends Controller
         $validator = Validator::make($request->all(),[
             "schedule_showtime_id" => "required|exists:schedule_showtimes,id",
             "seat_number" => "required|array|min:1",
+            "showdate" => "required|date",
           ]);
 
           // validasi error
@@ -46,6 +47,7 @@ class SeatController extends Controller
         $seat = Seat::create([
           "schedule_showtime_id" => $request->schedule_showtime_id,
           "seat_number" => $request->seat_number,
+          "showdate" => $request->showdate,
           "isbooked" => true
           ]);
 
@@ -91,6 +93,7 @@ class SeatController extends Controller
           $validator = Validator::make($request->all(), [
             "schedule_showtime_id" => "required|exists:schedule_showtimes,id",
             "seat_number" => "required|array|min:1",
+            "showdate" => "required|date",
             "isbooked" => "required|boolean"
           ]);
 
@@ -106,6 +109,7 @@ class SeatController extends Controller
         $seat->update([
           "schedule_showtime_id" => $request->schedule_showtime_id,
           "seat_number" => $request->seat_number,
+          "showdate" => $request->showdate,
           "isbooked" => $request->isbooked
         ]);
 
