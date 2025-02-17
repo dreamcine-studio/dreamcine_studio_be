@@ -33,4 +33,9 @@ class Seat extends Model
         $this->attributes['seat_number'] = json_encode($value);
     }
 
+    public function scheduleSHowtime() {
+        return $this->belongsTo(ScheduleShowtime::class);
+    }
+
+
 }

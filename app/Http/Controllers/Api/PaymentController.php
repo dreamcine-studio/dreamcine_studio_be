@@ -19,7 +19,7 @@ use Symfony\Contracts\Service\Attribute\Required;
 class PaymentController extends Controller
 {
     public function index(){
-        $payment_methods = Payment::all(); //elequent
+        $payment_methods = Payment::with('booking','paymentMethod')->get();
 
 
         // mengecek data genre
@@ -86,7 +86,7 @@ class PaymentController extends Controller
     }
 
     public function show(string $id) {
-        $payment = Payment::find($id);
+        $payment = Payment::with('booking','paymentMethod')->find($id);
 
         if(!$payment){
             return response()->json([

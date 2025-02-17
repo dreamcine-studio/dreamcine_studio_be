@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 class SeatController extends Controller
 {
     public function index() {
-        $seats = Seat::all();
+        $seats = Seat::with('scheduleSHowtime')->get();
         return response()->json([
           "success" => true,
           "message" => "Get All Resource",
@@ -61,7 +61,7 @@ class SeatController extends Controller
       }
 
       public function show(string $id){
-          $seat = Seat::find($id);
+          $seat = Seat::with('scheduleSHowtime')->find($id);
 
           if (!$seat) {
               return response()->json([

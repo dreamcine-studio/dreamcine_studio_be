@@ -14,7 +14,7 @@ class MovieController extends Controller
     public function index()
     {
         // mengambil data movie
-        $movies = Movie::all();
+        $movies = Movie::with('genre')->get();
 
         // mengecek data movie
         if ($movies->isEmpty()) {
@@ -83,7 +83,7 @@ class MovieController extends Controller
     public function show(string $id)
     {
         // mengambil data movie
-        $movie = Movie::find($id);
+        $movie = Movie::with('genre')->find($id);
 
         // mengecek data movie
         if (!$movie) {

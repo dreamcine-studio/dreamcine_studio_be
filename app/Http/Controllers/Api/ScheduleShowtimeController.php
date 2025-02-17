@@ -11,7 +11,7 @@ class ScheduleShowtimeController extends Controller
 {
     public function index()
     {
-        $scheduleShowtime = ScheduleShowtime::all();
+        $scheduleShowtime = ScheduleShowtime::with('schedule','showtime')->get();
         return response()->json([
             "success" => true,
             "message" => "Get All Resource",
@@ -51,7 +51,7 @@ class ScheduleShowtimeController extends Controller
 
     public function show(string $id)
     {
-        $scheduleShowtime = ScheduleShowtime::find($id);
+        $scheduleShowtime = ScheduleShowtime::with('schedule','showtime')->find($id);
 
         if (!$scheduleShowtime) {
             return response()->json([

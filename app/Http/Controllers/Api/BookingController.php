@@ -13,7 +13,7 @@ class BookingController extends Controller
     public function index()
     {
         // mengambil data booking
-        $booking = Booking::all();
+        $booking = Booking::with('user','scheduleShowtime','seat')->get();
 
         // mengecek data booking
         if ($booking->isEmpty()) {
@@ -37,6 +37,7 @@ class BookingController extends Controller
         $validator = Validator::make($request->all(), [
             "user_id" => "required|integer|exists:users,id",
             "schedule_id" => "required|integer|exists:schedules,id",
+            "seat_id" => "required|integer|exists:seats,id",
             "quantity" => "required|integer",
             "showtime" => "required|date_format:H:i",
             'amount' => 'nullable|numeric|min:0',
@@ -54,6 +55,7 @@ class BookingController extends Controller
         $booking = Booking::create([
             "user_id" => $request->user_id,
             "schedule_id" => $request->schedule_id,
+            "seat_id" => $request->seat_id,
             "quantity" => $request->quantity,
             "showtime" => $request->showtime,
             "amount" => $request->amount
@@ -70,7 +72,7 @@ class BookingController extends Controller
     public function show(string $id)
     {
         // mengambil data booking
-        $booking = Booking::find($id);
+        $booking = Booking::with('user','scheduleShowtime','seat')->find($id);
 
         // mengecek data booking
         if (!$booking) {
@@ -106,6 +108,7 @@ class BookingController extends Controller
         $validator = Validator::make($request->all(), [
             "user_id" => "required|integer|exists:users,id",
             "schedule_id" => "required|integer|exists:schedules,id",
+            "seat_id" => "required|integer|exists:seats,id",
             "quantity" => "required|integer",
             "showtime" => "required|date_format:H:i",
             'amount' => 'nullable|numeric|min:0',
@@ -123,6 +126,7 @@ class BookingController extends Controller
         $booking->update([
             "user_id" => $request->user_id,
             "schedule_id" => $request->schedule_id,
+            "seat_id" => $request->seat_id,
             "quantity" => $request->quantity,
             "showtime" => $request->showtime,
             "amount" => $request->amount

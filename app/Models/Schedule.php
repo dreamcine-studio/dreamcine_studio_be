@@ -14,11 +14,12 @@ class Schedule extends Model
     ];
 
 
-// public function showtimes() {
-//     return $this->hasMany(ScheduleShowtime::class);
-// }
+    public function movie() {
+        return $this->belongsTo(Movie::class);
+    }
 
-
-
+    public function studio() {
+        return $this->belongsTo(Studio::class);
+    }
 
 }

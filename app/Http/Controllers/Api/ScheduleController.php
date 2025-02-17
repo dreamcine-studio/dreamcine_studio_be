@@ -11,7 +11,7 @@ class ScheduleController extends Controller
 {
     public function index()
     {
-        $schedule = Schedule::all();
+        $schedule = Schedule::with('movie','studio')->get();;
         return response()->json([
             "success" => true,
             "message" => "Get All Resource",
@@ -55,7 +55,7 @@ class ScheduleController extends Controller
 
     public function show(string $id)
     {
-        $schedule = Schedule::find($id);
+        $schedule = Schedule::with('movie','studio')->find($id);
 
         if (!$schedule) {
             return response()->json([

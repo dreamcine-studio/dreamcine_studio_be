@@ -16,4 +16,8 @@ class Movie extends Model
         'release_date',
         'genre_id',
     ];
+
+    public function genre() {
+        return $this->belongsTo(Genre::class);
+    }
 }
