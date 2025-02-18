@@ -30,10 +30,4 @@ class UserController extends Controller
             "data" => $users
         ], 200);
     }
-
-
-
-
-
-
 }
