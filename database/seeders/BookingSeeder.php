@@ -28,7 +28,6 @@ class BookingSeeder extends Seeder
         ]);
         Booking::create([
             'user_id' => 2,
-            'schedule_id' => 3,
             'schedule_showtime_id' => 3,
             'seat_id' => 3,
             'quantity' => 3,
