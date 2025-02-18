@@ -20,7 +20,7 @@ class MovieSeeder extends Seeder
         'cast' => 'Annabelle Wallis, Ward Horton, Alfre Woodard',
         'duration' => '99',
         'release_date' => '2014-10-03',
-        'genre_id' => 3 // Horror
+        'genre_id' => 3 
     ]);
 
     Movie::create([
@@ -31,7 +31,7 @@ class MovieSeeder extends Seeder
         'cast' => 'Leonardo DiCaprio, Joseph Gordon-Levitt, Elliot Page',
         'duration' => '148',
         'release_date' => '2010-07-16',
-        'genre_id' => 6 // Science Fiction
+        'genre_id' => 6
     ]);
 
     Movie::create([
@@ -42,7 +42,7 @@ class MovieSeeder extends Seeder
         'cast' => 'Will Smith, Jaden Smith, Thandie Newton',
         'duration' => '117',
         'release_date' => '2006-12-15',
-        'genre_id' => 5 // Drama
+        'genre_id' => 5
     ]);
 
     Movie::create([
@@ -53,7 +53,7 @@ class MovieSeeder extends Seeder
         'cast' => 'Umay Shahab, Iqbaal Ramadhan, Devano Danendra',
         'duration' => '120',
         'release_date' => '2023-11-10',
-        'genre_id' => 5 // Drama
+        'genre_id' => 5
     ]);
 
     Movie::create([
@@ -64,7 +64,7 @@ class MovieSeeder extends Seeder
         'cast' => 'Nicholas Saputra, Putri Marino',
         'duration' => '110',
         'release_date' => '2024-02-14',
-        'genre_id' => 2 // Romance
+        'genre_id' => 2
     ]);
 
     Movie::create([
@@ -75,7 +75,7 @@ class MovieSeeder extends Seeder
         'cast' => 'Chicco Kurniawan, Amanda Rawles, Ringgo Agus Rahman',
         'duration' => '98',
         'release_date' => '2023-07-21',
-        'genre_id' => 4 // Comedy
+        'genre_id' => 4
     ]);
 
     Movie::create([
@@ -86,7 +86,7 @@ class MovieSeeder extends Seeder
         'cast' => 'Matthew McConaughey, Anne Hathaway, Jessica Chastain',
         'duration' => '169',
         'release_date' => '2014-11-07',
-        'genre_id' => 6 // Science Fiction
+        'genre_id' => 6
     ]);
 
     Movie::create([
@@ -97,7 +97,7 @@ class MovieSeeder extends Seeder
         'cast' => 'Song Kang-ho, Lee Sun-kyun, Cho Yeo-jeong',
         'duration' => '132',
         'release_date' => '2019-05-30',
-        'genre_id' => 5 // Drama
+        'genre_id' => 5
     ]);
 
     Movie::create([
@@ -108,7 +108,7 @@ class MovieSeeder extends Seeder
         'cast' => 'Rumi Hiiragi, Miyu Irino, Mari Natsuki',
         'duration' => '125',
         'release_date' => '2001-07-20',
-        'genre_id' => 6 // Science Fiction (karena fantasi lebih dekat ke Sci-Fi di seeder genre yang dibuat)
+        'genre_id' => 6
     ]);
 }
 

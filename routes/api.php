@@ -45,8 +45,6 @@ Route::middleware(['auth:api'])->group(function () {
             Route::apiResource('/payments', PaymentController::class)->only(['index', 'store']);
             Route::apiResource('/seats', SeatController::class)->only(['store']);
 
-
-
             Route::middleware(['role:admin'])->group(function () {
                 Route::apiResource('/seats',SeatController::class)->only(['update', 'destroy']);
                 Route::apiResource('/movies', MovieController::class)->only(['store', 'update', 'destroy']);
@@ -57,9 +55,7 @@ Route::middleware(['auth:api'])->group(function () {
                 Route::apiResource('/schedules', ScheduleController::class)->only(['store', 'update', 'destroy', 'show']);
                 Route::apiResource('/bookings', BookingController::class)->only(['update', 'destroy']);
                 Route::apiResource('/users', UserController::class)->only(['index']);
-                Route::apiResource('/scheduleshowtime', ScheduleShowtimeController::class)->only(['store','update', 'destroy']);
+                Route::apiResource('/scheduleshowtimes', ScheduleShowtimeController::class)->only(['store','update', 'destroy']);
                 Route::apiResource('/showtimes', ShowtimeController::class)->only(['store','update', 'destroy']);
-
             });
-
 });
