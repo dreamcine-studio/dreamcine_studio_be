@@ -37,7 +37,7 @@ class BookingController extends Controller
         $validator = Validator::make($request->all(), [
             "user_id" => "required|integer|exists:users,id",
             "schedule_id" => "required|integer|exists:schedules,id",
-            "seat_id" => "required|integer|exists:seats,id",
+            "seat_id" => "nullable|integer|exists:seats,id",
             "quantity" => "required|integer",
             "showtime" => "required|date_format:H:i",
             'amount' => 'nullable|numeric|min:0',
@@ -108,7 +108,7 @@ class BookingController extends Controller
         $validator = Validator::make($request->all(), [
             "user_id" => "required|integer|exists:users,id",
             "schedule_id" => "required|integer|exists:schedules,id",
-            "seat_id" => "required|integer|exists:seats,id",
+            "seat_id" => "nullable|integer|exists:seats,id",
             "quantity" => "required|integer",
             "showtime" => "required|date_format:H:i",
             'amount' => 'nullable|numeric|min:0',

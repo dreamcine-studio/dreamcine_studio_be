@@ -38,7 +38,7 @@ class PaymentSeeder extends Seeder
                 "payment_method_id" => 3,
                 "amount" => 15000,
                 "payment_date" => "2024-01-19",
-                "status" => "pending"
-]);
+                "status" => "confirmed"
+    ]);
     }
 }
