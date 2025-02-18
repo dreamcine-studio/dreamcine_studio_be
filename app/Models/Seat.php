@@ -10,14 +10,6 @@ class Seat extends Model
         'schedule_showtime_id', 'showdate', 'seat_number', 'isbooked'
     ];
 
-    public static function isSeatBooked($scheduleShowtimeId, $seatNumber)
-    {
-        return self::where('schedule_showtime_id', $scheduleShowtimeId)
-                   ->whereIn('seat_number', $seatNumber)
-                   ->where('isbooked', true)
-                   ->exists();
-    }
-
     protected $casts = [
         'seat_number' => 'json', // Simpan sebagai JSON
     ];

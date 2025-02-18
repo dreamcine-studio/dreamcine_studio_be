@@ -24,6 +24,7 @@ class SeatController extends Controller
             "schedule_showtime_id" => "required|exists:schedule_showtimes,id",
             "seat_number" => "required|array|min:1",
             "showdate" => "required|date",
+            "isbooked" => "required|boolean",
           ]);
 
           // validasi error
@@ -34,21 +35,12 @@ class SeatController extends Controller
         ], 422);
     };
 
-
-
-    if (Seat::isSeatBooked($request->schedule_showtime_id, $request->seat_number)) {
-        return response()->json([
-            "success" => false,
-            "message" => "Seat number already booked!"
-        ], 400); // HTTP status 400: Bad Request
-    }
-
           // insert data
         $seat = Seat::create([
           "schedule_showtime_id" => $request->schedule_showtime_id,
           "seat_number" => $request->seat_number,
           "showdate" => $request->showdate,
-          "isbooked" => true
+          "isbooked" => $request->isbooked,
           ]);
 
             // memberi pesan berhasil

@@ -36,10 +36,9 @@ class BookingController extends Controller
         // membuat validasi
         $validator = Validator::make($request->all(), [
             "user_id" => "required|integer|exists:users,id",
-            "schedule_id" => "required|integer|exists:schedules,id",
+            "schedule_showtime_id" => "required|integer|exists:schedule_showtimes,id",
             "seat_id" => "nullable|integer|exists:seats,id",
             "quantity" => "required|integer",
-            "showtime" => "required|date_format:H:i",
             'amount' => 'nullable|numeric|min:0',
         ]);
 
@@ -54,7 +53,7 @@ class BookingController extends Controller
         // membuat data booking
         $booking = Booking::create([
             "user_id" => $request->user_id,
-            "schedule_id" => $request->schedule_id,
+            "schedule_showtime_id" => $request->schedule_showtime_id,
             "seat_id" => $request->seat_id,
             "quantity" => $request->quantity,
             "showtime" => $request->showtime,
@@ -107,10 +106,9 @@ class BookingController extends Controller
         // membuat validasi
         $validator = Validator::make($request->all(), [
             "user_id" => "required|integer|exists:users,id",
-            "schedule_id" => "required|integer|exists:schedules,id",
-            "seat_id" => "nullable|integer|exists:seats,id",
+            "schedule_showtime_id" => "required|integer|exists:schedule_showtimes,id",
+            "seat_id" => "required|integer|exists:seats,id",
             "quantity" => "required|integer",
-            "showtime" => "required|date_format:H:i",
             'amount' => 'nullable|numeric|min:0',
         ]);
 
@@ -125,10 +123,9 @@ class BookingController extends Controller
         // update data booking
         $booking->update([
             "user_id" => $request->user_id,
-            "schedule_id" => $request->schedule_id,
+            "schedule_showtime_id" => $request->schedule_showtime_id,
             "seat_id" => $request->seat_id,
             "quantity" => $request->quantity,
-            "showtime" => $request->showtime,
             "amount" => $request->amount
         ]);
 
