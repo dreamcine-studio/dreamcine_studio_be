@@ -40,11 +40,6 @@ Route::apiResource('/scheduleshowtime', ScheduleShowtimeController::class)->only
 Route::middleware(['auth:api'])->group(function () {
     Route::get('/user', fn(Request $request) => $request->user());
 
-            // Route::apiResource('/genres', GenreController::class);
-            // Route::apiResource('/payment_methods',PaymentMethodController::class);
-            // Route::apiResource('/studios',StudioController::class);
-
-
             Route::apiResource('/schedules', ScheduleController::class)->only(['store', 'update', 'destroy']);
             Route::apiResource('/bookings', BookingController::class)->only(['index', 'show', 'store']);
             Route::apiResource('/payments', PaymentController::class)->only(['index', 'store']);
