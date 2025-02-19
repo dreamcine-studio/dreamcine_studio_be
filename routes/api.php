@@ -34,7 +34,7 @@ Route::apiResource('/schedules',ScheduleController::class)->only(['index', 'show
 Route::apiResource('/payment_methods',PaymentMethodController::class)->only(['index', 'show']);
 Route::apiResource('/seats',SeatController::class)->only(['index', 'show' ]);
 Route::get('/movie-genre/{genreId}', [MovieController::class, 'showUserId']);
-Route::apiResource('/scheduleshowtime', ScheduleShowtimeController::class)->only(['index', 'show']);
+Route::apiResource('/scheduleshowtimes', ScheduleShowtimeController::class)->only(['index', 'show']);
 
 
 Route::middleware(['auth:api'])->group(function () {
