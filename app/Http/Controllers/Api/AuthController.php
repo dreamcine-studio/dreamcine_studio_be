@@ -12,38 +12,65 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 class AuthController extends Controller
 {
     public function register(Request $request) {
-        // membuat validasi
+        // Membuat validasi
         $validator = Validator::make($request->all(), [
             "name" => "required|string|max:255",
             "email" => "required|string|email|max:255|unique:users",
-            "password" => "required|string|min:8"
+            "password" => [
+                "required",
+                "string",
+                "min:8",
+                function ($attribute, $value, $fail) {
+                    if (strlen($value) < 8) {
+                        $fail("Password must be at least 8 characters.");
+                    }
+                }
+            ]
+        ], [
+            "name.required" => "Name is required.",
+            "email.required" => "Email is required.",
+            "email.email" => "Please enter a valid email.",
+            "email.unique" => "Email already exists. Please login instead.",
+            "password.required" => "Password is required.",
+            "password.min" => "Password must be at least 8 characters."
         ]);
 
-        // cek validasi
+        // Cek validasi
         if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
+            // Jika email sudah terdaftar, beri pesan khusus
+            if ($validator->errors()->has('email')) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Email already exists. Please login instead.',
+                    'errors' => $validator->errors()
+                ], 409); // Conflict
+            }
+
+            return response()->json([
+                'success' => false,
+                'errors' => $validator->errors()
+            ], 422);
         }
 
-        // tambah data user
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password)
-        ]);
+        try {
+            // Tambah data user
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => bcrypt($request->password)
+            ]);
 
-        // memberi pesan berhasil
-        if ($user) {
             return response()->json([
                 'success' => true,
                 'message' => 'User created successfully',
                 'data' => $user
             ], 201);
-
-            // Return response if process failed
+        } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => 'User creation failed'
-            ], 409); // Conflict
+                'message' => 'User creation failed',
+                'error' => $e->getMessage()
+            ], 500);
         }
     }
 
@@ -51,36 +78,44 @@ class AuthController extends Controller
     //Login
 
     public function login(Request $request) {
-        // membuat validasi
+        // Validasi input
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
             'password' => 'required|string'
         ]);
 
-        // cek validsai
+        // Jika validasi gagal
         if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
-        }
-
-        // mengambil data email dan password
-        $credentials = $request->only('email', 'password');
-
-        // jika data tersebut gagal
-        if(!$token = auth()->guard('api')->attempt($credentials)) {
             return response()->json([
                 'success' => false,
-                'message' => 'Email atau Password Anda salah!'
+                'message' => 'Please provide email and password'
+            ], 422);
+        }
+
+        // Cek apakah email terdaftar di database
+        $user = User::where('email', $request->email)->first();
+        if (!$user) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Username not found, please register'
+            ], 404);
+        }
+
+        // Cek apakah password cocok
+        if (!$token = auth()->guard('api')->attempt($request->only('email', 'password'))) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Email or Password Incorrect!'
             ], 401);
         }
 
-        // membuat pesan apabila sukses
+        // Jika berhasil login
         return response()->json([
             'success' => true,
             'message' => 'Login successfully',
             'user' => auth()->guard('api')->user(),
             'token' => $token
         ], 200);
-
     }
 
 
